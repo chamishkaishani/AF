@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import Userdashboard from '../components/Userdashboard';
 import CountryCard from '../components/Countrycard';
 import SearchBar from '../components/Searchbar';
 import FilterBar from '../components/Filterbar';
@@ -39,15 +38,7 @@ export default function Home() {
 
   return (
     <div className="flex h-screen" onMouseMove={handleMouseMove}>
-      {!isAdmin && (
-        <div
-          className={`fixed top-[52px] left-0 h-full transition-transform duration-300 ease-in-out transform ${
-            isSidebarVisible ? 'translate-x-0' : '-translate-x-full'
-          }`}
-        >
-          <Userdashboard />
-        </div>
-      )}
+      
 
       <div className="flex-1 overflow-y-auto ml-auto p-4">
         <header className="flex items-center justify-between bg-white rounded shadow p-4 mb-4">

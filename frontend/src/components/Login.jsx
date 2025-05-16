@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signInSuccess } from '../redux/user/userSlice';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -7,6 +9,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const validateEmail = (value) => {
     const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -21,6 +24,8 @@ export default function Login() {
     if (emailError || passwordError || !email || !password) return;
 
     localStorage.setItem('user', JSON.stringify({ email }));
+    // Dispatch to Redux
+    dispatch(signInSuccess({ email }));
     alert('Logged in successfully!');
     navigate('/favourites');
   };
